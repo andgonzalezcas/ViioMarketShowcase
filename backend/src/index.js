@@ -1,9 +1,6 @@
-import express from 'express';
+import { PORT } from './constants/common.constants';
+import app from './app';
 
-import { PORT } from './constants/common.constants'
-
-const app = express();
-
-app.listen(PORT)
+app.listen(PORT);
 
 console.log('Server listener on port [', PORT, ']');
