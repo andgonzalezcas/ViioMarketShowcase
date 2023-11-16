@@ -14,7 +14,7 @@ export const getProducts = async (req, res) => {
       status = 404;
     });
 
-  res.json({ response, status });
+  res.status(status).json({ response });
 }
 
 export const getProductById = async (req, res) => {
@@ -31,5 +31,5 @@ export const getProductById = async (req, res) => {
       status = 404;
     });
 
-  res.json({ response, status });
+  res.status(status).json({ response });
 }

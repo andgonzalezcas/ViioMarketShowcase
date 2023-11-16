@@ -5,25 +5,29 @@ import config from '../config'
 export const signup = async (req, res) => {
   const { username, email, password } = req.body;
 
-  const newUser = new User({
-    username,
-    email,
-    password: await User.encryptPassword(password)
-  });
+  try {
+    const newUser = new User({
+      username,
+      email,
+      password: await User.encryptPassword(password)
+    });
 
-  const savedUser = await newUser.save();
+    const savedUser = await newUser.save();
 
-  const token = jwt.sign(
-    {
-      id: savedUser.id
-    },
-    config.SECRET,
-    {
-      expiresIn: 120 // expira en 120 segundos
-    }
-  )
+    const token = jwt.sign(
+      {
+        id: savedUser.id
+      },
+      config.SECRET,
+      {
+        expiresIn: 86400 // expira en 120 segundos - 24 horas
+      }
+    )
 
-  res.json({ token });
+    res.json({ token });
+  } catch (error) {
+    res.status(500).json({ message: "Error creating user (" + error + ")" });
+  }
 }
 
 export const signin = async (req, res) => {
