@@ -5,8 +5,9 @@ import morgan from 'morgan';
 // rutas
 import productRoutes from './routes/products.routes';
 import authRoutes from './routes/auth.routes';
+import usersRouters from './routes/user.routes';
 
-import { createUsers } from './libs/initialUsers'
+import { createUsers } from './libs/initialUsers';
 import pkg from '../package.json';
 
 const app = express();
@@ -31,5 +32,6 @@ app.get('/', (req, res) => {
 
 app.use('/products', productRoutes);
 app.use('/auth', authRoutes);
+app.use('/users', usersRouters);
 
 export default app;

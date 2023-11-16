@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { signin, signup } from '../controllers/auth.controller';
-import { checkDuplicateEmail, checkDuplicateUsername } from '../middlewares'
+import { checkDuplicateEmail, checkDuplicateUsername } from '../middlewares';
 
 const router = Router();
 
