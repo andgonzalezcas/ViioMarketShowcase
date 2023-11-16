@@ -4,13 +4,14 @@ services:
   backend:
     container_name: viio-market-showcase-backend
     restart: always
-    build: .
+    build:
+      context: ./backend/
     ports:
       - "4040:4040"
     links:
       - mongo
-    volumes:
-      - .:/usr/src/app
+    # volumes:
+    #   - .:/usr/src/app
   mongo:
     container_name: mongodatabase
     image: mongo
