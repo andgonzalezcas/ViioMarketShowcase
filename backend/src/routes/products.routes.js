@@ -6,9 +6,9 @@ import {
 } from '../controllers/products.controller';
 
 router.get('/', getProducts);
-router.post('/', createProduct);
+// router.post('/', createProduct);
 router.get('/:productId', getProductById);
-router.put('/:productId', updateProductById);
-router.delete('/:productId', deleteProductById);
+// router.put('/:productId', updateProductById);
+// router.delete('/:productId', deleteProductById);
 
 export default router;
