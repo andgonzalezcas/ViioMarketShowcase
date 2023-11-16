@@ -13,8 +13,6 @@ export const createUsers = async () => {
         password: await User.encryptPassword('test123')
       }).save()
     ]);
-
-    console.log(values);
   } catch (error) {
     console.log(error);
   }
