@@ -12,4 +12,4 @@ COPY . .
 
 EXPOSE 4040
 
-CMD ["npm", "run", "build" && "npm", "start"]
+CMD ["sh", "-c", "npm run build && npm start"]
