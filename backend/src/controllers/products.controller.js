@@ -6,7 +6,6 @@ export const getProducts = async (req, res) => {
 
   await axios.get('https://dummyjson.com/products?limit=100')
     .then((res) => {
-      console.log({ res: res.data })
       response = res.data.products;
       status = res.status;
     })
@@ -22,11 +21,8 @@ export const getProductById = async (req, res) => {
   let response;
   let status = 500;
 
-  console.log(req);
-
   await axios.get('https://dummyjson.com/products/' + req.params.productId)
     .then((res) => {
-      console.log({ res: res.data })
       response = res.data;
       status = res.status;
     })
