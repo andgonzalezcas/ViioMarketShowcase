@@ -19,7 +19,7 @@ export const apiSlice = createApi({
         body: user,
       })
     }),
-    signUp: builder.query({
+    signUp: builder.query({ // Esto no es mutable sino query por que se recibe de vuelta el tocken de acceso.
       query: (newUser: { username: string, email: string, password: string }) => ({
         method: VIIO_MARKET_SHOWCASE_BACKEND_SERVICE.endpoints.signup.method,
         url: VIIO_MARKET_SHOWCASE_BACKEND_SERVICE.endpoints.signup.url,
