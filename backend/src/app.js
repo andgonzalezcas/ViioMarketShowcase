@@ -25,10 +25,12 @@ app.use(morgan('dev'));
 //routes
 app.get('/', (req, res) => {
   res.json({
-    autor: app.get('pkg').author,
-    name: app.get('pkg').name,
-    description: app.get('pkg').description,
-    version: app.get('pkg').version,
+    response: {
+      autor: app.get('pkg').author,
+      name: app.get('pkg').name,
+      description: app.get('pkg').description,
+      version: app.get('pkg').version,
+    }
   });
 });
 

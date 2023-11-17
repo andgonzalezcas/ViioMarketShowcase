@@ -20,9 +20,9 @@ export const signup = async (req, res) => {
       { expiresIn: 86400 } // 24 horas
     )
 
-    res.json({ token });
+    res.json({ response: token });
   } catch (error) {
-    res.status(500).json({ message: "Error creating user (" + error + ")" });
+    res.status(500).json({ response: "Error creating user (" + error + ")" });
   }
 }
 
@@ -32,14 +32,13 @@ export const signin = async (req, res) => {
   try {
     const userFound = await User.findOne({ email });
 
-    if (!userFound) return res.status(400).json({ message: "User not found" });
+    if (!userFound) return res.status(400).json({ response: "User not found" });
 
     const matchPassword = await User.comparePassword(password, userFound.password);
 
     if (!matchPassword)
       return res.status(401).json({
-        token: null,
-        message: "Invalid Password",
+        response: "Invalid Password",
       });
 
     const token = jwt.sign(
@@ -48,8 +47,8 @@ export const signin = async (req, res) => {
       { expiresIn: 86400 } // 24 horas
     );
 
-    res.json({ token });
+    res.json({ response: token });
   } catch (error) {
-    res.status(500).json({ message: "Error signin user (" + error + ")" });
+    res.status(500).json({ response: "Error signin user (" + error + ")" });
   }
 }
