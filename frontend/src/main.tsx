@@ -13,11 +13,13 @@ import { apiSlice } from './api/apiSclie.ts'
 import StoreView from './pages/store.tsx';
 import SignInView from './pages/signin.tsx';
 import SignUpView from './pages/signup.tsx';
+import ErrorView from './pages/error.tsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorView />
   }, {
     path: "/store",
     element: <StoreView />,
