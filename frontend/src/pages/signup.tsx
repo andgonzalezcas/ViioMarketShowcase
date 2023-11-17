@@ -1,15 +1,27 @@
-import { useSignUpQuery } from "../api/apiSclie"
+import { useSignUpMutation } from "../api/apiSclie"
+import { setToken } from "../redux/auth.slice";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 const SignUpView = () => {
-  const { isError, isLoading } = useSignUpQuery({ username: 'andres', email: 'andgonzalezcas@gmail.com', password: 'password' })
+  const [apiSignup] = useSignUpMutation();
+  const dispatch = useAppDispatch();
+  const token = useAppSelector((state) => state.auth.userToken)
 
-  if (isLoading) return <div>Loading ...</div>
-  else if (isError) return <div>Error</div>
+  const handleSignup = () => {
+    apiSignup({ username: 'andres', email: 'andgonzalezcas@gmail.com', password: 'password' })
+      .then((res: any) => {
+        dispatch(setToken(res.data.token))
+      })
+      .catch(error => { console.error({ error }) })
+  }
 
   return (
-    <div className="truncate">
-      user creado
-    </div>
+    <>
+      <button className="truncate" onClick={() => handleSignup()}>
+        Crear usuario
+      </button>
+      <p className="truncate">usuario: {token}</p>
+    </>
   )
 }
 

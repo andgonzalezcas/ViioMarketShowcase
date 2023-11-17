@@ -12,14 +12,14 @@ export const apiSlice = createApi({
         headers: { 'x-access-token': accessToken }
       })
     }),
-    signIn: builder.query({
+    signIn: builder.mutation({
       query: (user: { email: string, password: string }) => ({
         method: VIIO_MARKET_SHOWCASE_BACKEND_SERVICE.endpoints.signin.method,
         url: VIIO_MARKET_SHOWCASE_BACKEND_SERVICE.endpoints.signin.url,
         body: user,
       })
     }),
-    signUp: builder.query({ // Esto no es mutable sino query por que se recibe de vuelta el tocken de acceso.
+    signUp: builder.mutation({
       query: (newUser: { username: string, email: string, password: string }) => ({
         method: VIIO_MARKET_SHOWCASE_BACKEND_SERVICE.endpoints.signup.method,
         url: VIIO_MARKET_SHOWCASE_BACKEND_SERVICE.endpoints.signup.url,
@@ -29,4 +29,4 @@ export const apiSlice = createApi({
   }),
 })
 
-export const { useGetProductsQuery, useSignInQuery, useSignUpQuery } = apiSlice;
+export const { useGetProductsQuery, useSignInMutation, useSignUpMutation } = apiSlice;

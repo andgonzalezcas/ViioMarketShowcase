@@ -1,15 +1,20 @@
-import { useSignInQuery } from "../api/apiSclie"
+import { useSignInMutation } from "../api/apiSclie"
 
 const SignInView = () => {
-  const { data, isError, isLoading } = useSignInQuery({ email: 'test@test.viio', password: 'test123' })
+  const [apiSignin] = useSignInMutation();
 
-  if (isLoading) return <div>Loading ...</div>
-  else if (isError) return <div>Error</div>
+  const handleSignin = () => {
+    apiSignin({ email: 'test@test.viio', password: 'test123' })
+      .then((res) => {
+        console.log({ res })
+      })
+      .catch(error => { console.error({ error }) })
+  }
 
   return (
-    <div className="truncate">
-      {data.token}
-    </div>
+    <button className="truncate" onClick={() => handleSignin()}>
+      login
+    </button>
   )
 }
 
