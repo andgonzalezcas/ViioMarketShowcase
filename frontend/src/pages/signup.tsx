@@ -1,14 +1,14 @@
-import { useSignInQuery } from "../api/apiSclie"
+import { useSignUpQuery } from "../api/apiSclie"
 
 const SignUpView = () => {
-  const { data, isError, isLoading } = useSignInQuery({ email: 'test@test.viio', password: 'test123' })
+  const { isError, isLoading } = useSignUpQuery({ username: 'andres', email: 'andgonzalezcas@gmail.com', password: 'password' })
 
   if (isLoading) return <div>Loading ...</div>
   else if (isError) return <div>Error</div>
 
   return (
     <div className="truncate">
-      {data.token}
+      user creado
     </div>
   )
 }

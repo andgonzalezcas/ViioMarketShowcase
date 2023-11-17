@@ -5,6 +5,8 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import { Provider } from 'react-redux';
+import store from './redux/store.ts';
 
 import App from './App.tsx'
 import './index.css'
@@ -34,8 +36,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ApiProvider api={apiSlice}>
-      <RouterProvider router={router} />
-    </ApiProvider>
+    <Provider store={store}>
+      <ApiProvider api={apiSlice}>
+        <RouterProvider router={router} />
+      </ApiProvider>
+    </Provider>
   </React.StrictMode>,
 )

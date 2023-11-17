@@ -1,25 +1,32 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { VIIO_MARKET_SHOWCASE_BACKEND_SERVICE } from '../services';
 
 export const apiSlice = createApi({
   reducerPath: 'products',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4040' }),
+  baseQuery: fetchBaseQuery({ baseUrl: VIIO_MARKET_SHOWCASE_BACKEND_SERVICE.baseUrl }),
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: () => ({
-        url: '/products',
-        headers: {
-          'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NTc2ZDRlYmYwMTJhNTlmMTZlNjJiNyIsImlhdCI6MTcwMDIyODQ3MiwiZXhwIjoxNzAwMzE0ODcyfQ.ZYJP_ahlgLK57mconW9vsGMi3V4qHxBLzDDCoHQXiNQ'
-        }
+      query: (accessToken: string) => ({
+        method: VIIO_MARKET_SHOWCASE_BACKEND_SERVICE.endpoints.get_products.method,
+        url: VIIO_MARKET_SHOWCASE_BACKEND_SERVICE.endpoints.get_products.url,
+        headers: { 'x-access-token': accessToken }
       })
     }),
     signIn: builder.query({
       query: (user: { email: string, password: string }) => ({
-        method: 'POST',
-        url: "/auth/signin",
-        body: { email: user.email, password: user.password },
+        method: VIIO_MARKET_SHOWCASE_BACKEND_SERVICE.endpoints.signin.method,
+        url: VIIO_MARKET_SHOWCASE_BACKEND_SERVICE.endpoints.signin.url,
+        body: user,
+      })
+    }),
+    signUp: builder.query({
+      query: (newUser: { username: string, email: string, password: string }) => ({
+        method: VIIO_MARKET_SHOWCASE_BACKEND_SERVICE.endpoints.signup.method,
+        url: VIIO_MARKET_SHOWCASE_BACKEND_SERVICE.endpoints.signup.url,
+        body: newUser
       })
     })
   }),
 })
 
-export const { useGetProductsQuery, useSignInQuery } = apiSlice;
+export const { useGetProductsQuery, useSignInQuery, useSignUpQuery } = apiSlice;
