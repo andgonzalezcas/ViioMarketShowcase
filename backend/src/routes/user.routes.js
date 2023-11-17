@@ -2,8 +2,9 @@ import { Router } from 'express';
 const router = Router();
 
 import { verifyToken } from '../middlewares';
-import { getUsers } from '../controllers/user.controller';
+import { getUserByToken, getUsers } from '../controllers/user.controller';
 
 router.get('/', verifyToken, getUsers);
+router.get('/byToken', verifyToken, getUserByToken)
 
 export default router;

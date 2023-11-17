@@ -9,8 +9,10 @@ export const getUsers = async (req, res) => {
   }
 };
 
-export const getUser = async (req, res) => {
-  const { userId } = req.params;
-  const user = await User.findById(userId);
-  return res.json(user);
+export const getUserByToken = async (req, res) => {
+  try {
+    res.json({ response: req.userData });
+  } catch (error) {
+    res.status(500).json({ message: "Error getting user (" + error + ")" });
+  }
 };

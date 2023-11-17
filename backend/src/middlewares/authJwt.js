@@ -11,6 +11,8 @@ export const verifyToken = async (req, res, next) => {
 
     const user = await User.findById(decoded.id, { password: 0 }); // pasword: 0 es para que no retorne el password
     if (!user) return res.status(404).json({ message: 'no user token found' });
+
+    req.userData = user;
   } catch (error) {
     return res.status(500).json({ message: 'unauthorized' });
   }
