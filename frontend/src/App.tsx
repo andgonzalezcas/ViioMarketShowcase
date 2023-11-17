@@ -1,6 +1,6 @@
 function App() {
   return (
-    <div>Holiwis</div>
+    <div>Main page</div>
   )
 }
 
