@@ -1,6 +1,7 @@
 // librerias externas
 import express from 'express';
 import morgan from 'morgan';
+import cors from 'cors';
 
 // rutas
 import productRoutes from './routes/products.routes';
@@ -11,6 +12,7 @@ import { createUsers } from './libs/initialUsers';
 import pkg from '../package.json';
 
 const app = express();
+app.use(cors());
 createUsers();
 
 app.set('pkg', pkg);
