@@ -17,16 +17,6 @@ export const productsSlice = createSlice({
     setProductList: (state, action: PayloadAction<productProps[]>) => {
       state.list = action.payload
     },
-    // getProductItemById: (state, action: PayloadAction<number>) => {
-    //   const productId = action.payload;
-    //   const product = state.list.find((p) => p.id === productId);
-
-    //   if (product) {
-    //     return product;
-    //   } else {
-    //     return { id: -1, title: 'Product not found', description: '', price: 0, discountPercentage: 0, rating: 0, stock: 0, brand: '', category: '', thumbnail: '', images: [] };
-    //   }
-    // }
   }
 })
 

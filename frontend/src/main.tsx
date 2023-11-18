@@ -18,6 +18,7 @@ import SignInView from './pages/signin.tsx';
 import SignUpView from './pages/signup.tsx';
 import ErrorView from './pages/error.tsx';
 import IsUserSessionExpired from './layout/isUserSessionExpired.layout.tsx';
+import ProductDetailedCard from './components/productDetailedCard.tsx';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,9 @@ const router = createBrowserRouter([
     element: <IsUserSessionExpired >
       <StoreView />
     </IsUserSessionExpired>,
+  }, {
+    path: '/store/:productId',
+    element: <ProductDetailedCard />
   }, {
     path: "/login",
     element: <SignInView />,
