@@ -1,4 +1,4 @@
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { useSignInMutation } from "../api/apiSclie"
 import InputField from "../components/InputField";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,10 +10,13 @@ const SignInView = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const [emailValue, setEmailValue] = useState<string>('');
+  const [passwordValue, setPasswordValue] = useState<string>('');
+
   const handleSignin = (event: FormEvent) => {
     event.preventDefault();
 
-    apiSignin({ email: 'test@test.viio', password: 'test123' })
+    apiSignin({ email: emailValue, password: passwordValue })
       .then((res) => {
         if (!('data' in res)) throw 'Not valid return'
 
@@ -38,8 +41,8 @@ const SignInView = () => {
         </div>
 
         <div className="flex flex-col gap-2">
-          <InputField label="Your Email" placeholder="user@mail.com" />
-          <InputField label="Password" placeholder="********" type="password" />
+          <InputField label="Your Email" placeholder="user@mail.com" inputValue={emailValue} setInputValue={(value) => setEmailValue(value)} />
+          <InputField label="Password" placeholder="********" type="password" inputValue={passwordValue} setInputValue={(value) => setPasswordValue(value)} />
         </div>
 
         <div className="flex flex-col gap-3">

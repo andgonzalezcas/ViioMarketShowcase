@@ -1,4 +1,4 @@
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { useSignUpMutation } from "../api/apiSclie"
 import { disconnect, setSessionExpireIn, setToken } from "../redux/auth.slice";
 import { useAppDispatch } from "../redux/hooks";
@@ -10,10 +10,14 @@ const SignUpView = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const [userValue, setUserValue] = useState<string>('');
+  const [emailValue, setEmailValue] = useState<string>('');
+  const [passwordValue, setPasswordValue] = useState<string>('');
+
   const handleSignup = (event: FormEvent) => {
     event.preventDefault();
 
-    apiSignup({ username: 'andres', email: 'andgonzalezcas@gmail.com', password: 'password' })
+    apiSignup({ username: userValue, email: emailValue, password: passwordValue })
       .then((res) => {
         if (!('data' in res)) throw 'Not valid return'
 
@@ -41,9 +45,9 @@ const SignUpView = () => {
         </div>
 
         <div className="flex flex-col gap-2">
-          <InputField label="Your Name" placeholder="username" />
-          <InputField label="Your Email" placeholder="user@mail.com" />
-          <InputField label="Password" placeholder="********" type="password" />
+          <InputField label="Your Name" placeholder="username" inputValue={userValue} setInputValue={(value) => setUserValue(value)} />
+          <InputField label="Your Email" placeholder="user@mail.com" inputValue={emailValue} setInputValue={(value) => setEmailValue(value)} />
+          <InputField label="Password" placeholder="********" type="password" inputValue={passwordValue} setInputValue={(value) => setPasswordValue(value)} />
           <div className="w-full flex gap-2">
             <input type="checkbox" required />
             <p>I agree the <b className="hover:underline cursor-pointer" onClick={() => alert('Comming soon!')}>Terms and Conditios</b></p>
