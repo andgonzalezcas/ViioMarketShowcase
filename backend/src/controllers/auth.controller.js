@@ -1,6 +1,9 @@
 import User from '../models/user';
 import jwt from 'jsonwebtoken';
 import config from '../config';
+import { MINUTE_ON_MILISECONDS, MINUTE_ON_SECONDS } from '../constants/common.constants';
+
+const EXPIRE_IN_MINUTES = 10;
 
 export const signup = async (req, res) => {
   const { username, email, password } = req.body;
@@ -17,10 +20,16 @@ export const signup = async (req, res) => {
     const token = jwt.sign(
       { id: savedUser.id },
       config.SECRET,
-      { expiresIn: 600 } // 10 minutos
+      { expiresIn: EXPIRE_IN_MINUTES * MINUTE_ON_SECONDS } // 10 minutos
     )
 
-    res.json({ response: token, success: true });
+    res.json({
+      response: {
+        token,
+        expiresIn: new Date(now.getTime() + EXPIRE_IN_MINUTES * MINUTE_ON_MILISECONDS) // 10 minutos
+      },
+      success: true
+    });
   } catch (error) {
     res.json({ response: "Error creating user (" + error + ")", success: false });
   }
@@ -42,10 +51,19 @@ export const signin = async (req, res) => {
     const token = jwt.sign(
       { id: userFound._id },
       config.SECRET,
-      { expiresIn: 600 } // 10 minutos
+      { expiresIn: EXPIRE_IN_MINUTES * MINUTE_ON_SECONDS } // 10 minutos
     );
 
-    res.json({ response: token, success: true });
+    const now = new Date();
+
+    res.json({
+      response: {
+        token,
+        expiresIn: new Date(now.getTime() + EXPIRE_IN_MINUTES * MINUTE_ON_MILISECONDS) // 10 minutos
+      },
+      success: true,
+
+    });
   } catch (error) {
     res.json({ response: "Error signin user (" + error + ")", success: false });
   }
