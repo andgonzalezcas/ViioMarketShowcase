@@ -11,10 +11,23 @@ const SignInView = () => {
   const navigate = useNavigate();
 
   const [emailValue, setEmailValue] = useState<string>('');
+  const [emailError, setEmailError] = useState<string>('');
   const [passwordValue, setPasswordValue] = useState<string>('');
+
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailRegex.test(email);
+  };
 
   const handleSignin = (event: FormEvent) => {
     event.preventDefault();
+
+    if (!validateEmail(emailValue)) {
+      setEmailError('Invalid email format. Please use the format: user@example.com');
+      return;
+    } else {
+      setEmailError('');
+    }
 
     apiSignin({ email: emailValue, password: passwordValue })
       .then((res) => {
@@ -41,8 +54,20 @@ const SignInView = () => {
         </div>
 
         <div className="flex flex-col gap-2">
-          <InputField label="Your Email" placeholder="user@mail.com" inputValue={emailValue} setInputValue={(value) => setEmailValue(value)} />
-          <InputField label="Password" placeholder="********" type="password" inputValue={passwordValue} setInputValue={(value) => setPasswordValue(value)} />
+          <InputField
+            label="Your Email"
+            placeholder="user@mail.com"
+            inputValue={emailValue}
+            setInputValue={(value) => setEmailValue(value)}
+            errorMessage={emailError.length > 0 ? emailError : undefined}
+          />
+          <InputField
+            label="Password"
+            placeholder="********"
+            type="password"
+            inputValue={passwordValue}
+            setInputValue={(value) => setPasswordValue(value)}
+          />
         </div>
 
         <div className="flex flex-col gap-3">
