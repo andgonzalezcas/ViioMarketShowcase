@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import config from '../config';
 import { MINUTE_ON_MILISECONDS, MINUTE_ON_SECONDS } from '../constants/common.constants';
 
-const EXPIRE_IN_MINUTES = 10;
+const EXPIRE_IN_MINUTES = 120;
 
 export const signup = async (req, res) => {
   const { username, email, password } = req.body;
