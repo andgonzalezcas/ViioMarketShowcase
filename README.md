@@ -62,3 +62,9 @@ Una vez que los contenedores están en funcionamiento, puedes acceder al backend
 
 - Backend: [http://localhost:4040](http://localhost:4040)
 - Frontend: [http://localhost:5174](http://localhost:5174)
+
+### documentacion api
+
+En el proyecto nos podemos dirigir a los siguientes enlaces:
+- Postman documentatio: [https://documenter.getpostman.com/view/20593277/2s9YXpWzQ6](https://documenter.getpostman.com/view/20593277/2s9YXpWzQ6)
+- Swagger: [http://localhost:4040/api-docs](http://localhost:4040/api-docs)
