@@ -19,7 +19,6 @@ Este repositorio contiene el código fuente de un proyecto que utiliza Node.js, 
 
 1. **Clonar el Repositorio:**
     ```
-      bash
       git clone https://github.com/andgonzalezcas/ViioMarketShowcase.git
       cd ViioMarketShowcase
     ```
