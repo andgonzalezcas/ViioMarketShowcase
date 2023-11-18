@@ -17,15 +17,18 @@ import StoreView from './pages/store.tsx';
 import SignInView from './pages/signin.tsx';
 import SignUpView from './pages/signup.tsx';
 import ErrorView from './pages/error.tsx';
+import IsUserSessionExpired from './layout/isUserSessionExpired.layout.tsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorView />
+    errorElement: <ErrorView />,
   }, {
     path: "/store",
-    element: <StoreView />,
+    element: <IsUserSessionExpired >
+      <StoreView />
+    </IsUserSessionExpired>,
   }, {
     path: "/login",
     element: <SignInView />,
@@ -42,5 +45,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <RouterProvider router={router} />
       </Provider>
     </ApiProvider>
-  </React.StrictMode>,
+  </React.StrictMode >,
 )

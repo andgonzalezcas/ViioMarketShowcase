@@ -12,7 +12,7 @@ const initialState: initialStateProps = {
   connected: false,
   userToken: "",
   username: "",
-  sessionExpireIn: 0,
+  sessionExpireIn: 0.1,
 }
 
 export const authSlice = createSlice({
