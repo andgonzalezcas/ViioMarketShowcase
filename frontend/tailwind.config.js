@@ -13,8 +13,11 @@ export default {
           soft: '#0092FF',
           strong: '#0059A3'
         }
+      },
+      backgroundImage: {
+        'viio-image': "url('/bg.b532fb65ca3b13f13ebc.jpg')"
       }
-    },
+    }
   },
   plugins: [],
 }

@@ -18,6 +18,7 @@ const IsUserSessionExpired = ({ children }: IsUserSessionExpiredProps) => {
 
   const handleRedirectUser = () => {
     dispatch(disconnect());
+    alert('your session time has expired, please log in again.')
     navigate("/login");
     // TODO: renewToken();
   }
