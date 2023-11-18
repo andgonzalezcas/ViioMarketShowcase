@@ -1,6 +1,6 @@
 import { FormEvent } from "react";
 import { useSignUpMutation } from "../api/apiSclie"
-import { disconnect, setToken } from "../redux/auth.slice";
+import { disconnect, setSessionExpireIn, setToken } from "../redux/auth.slice";
 import { useAppDispatch } from "../redux/hooks";
 import InputField from "../components/InputField";
 import { Link } from "react-router-dom";
@@ -13,8 +13,16 @@ const SignUpView = () => {
     event.preventDefault();
 
     apiSignup({ username: 'andres', email: 'andgonzalezcas@gmail.com', password: 'password' })
-      .then((res: any) => {
-        dispatch(setToken(res.data.response))
+      .then((res) => {
+        if (!('data' in res)) throw 'Not valid return'
+
+        if (res.data.success) {
+          dispatch(setToken(res.data.response.token))
+          dispatch(setSessionExpireIn(res.data.response.expiresIn))
+
+        } else {
+          alert('Error (' + res.data.response + ')')
+        }
       })
       .catch(error => {
         dispatch(disconnect())
@@ -33,7 +41,7 @@ const SignUpView = () => {
         <div className="flex flex-col gap-2">
           <InputField label="Your Name" placeholder="username" />
           <InputField label="Your Email" placeholder="user@mail.com" />
-          <InputField label="Password" placeholder="********" type="password"/>
+          <InputField label="Password" placeholder="********" type="password" />
           <div className="w-full flex gap-2">
             <input type="checkbox" required />
             <p>I agree the <b className="hover:underline cursor-pointer" onClick={() => alert('Comming soon!')}>Terms and Conditios</b></p>

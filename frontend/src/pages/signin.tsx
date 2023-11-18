@@ -10,9 +10,7 @@ const SignInView = () => {
     event.preventDefault();
 
     apiSignin({ email: 'test@test.viio', password: 'test123' })
-      .then((res) => {
-        console.log({ res })
-      })
+      .then((res) => { })
       .catch(error => { console.error({ error }) })
   }
 
