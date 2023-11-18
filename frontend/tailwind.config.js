@@ -5,7 +5,16 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        dark: '#131313',
+        light: '#ffffff',
+        viio_blue: {
+          soft: '#0092FF',
+          strong: '#0059A3'
+        }
+      }
+    },
   },
   plugins: [],
 }
