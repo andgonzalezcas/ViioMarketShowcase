@@ -18,7 +18,10 @@ import SignInView from './pages/signin.tsx';
 import SignUpView from './pages/signup.tsx';
 import ErrorView from './pages/error.tsx';
 import IsUserSessionExpired from './layout/isUserSessionExpired.layout.tsx';
-import ProductDetailedCard from './components/productDetailedCard.tsx';
+import ProductDetailedCard from './pages/store/productDetailedCard.tsx';
+import FindByCategory from './pages/store/findByCategory.tsx';
+import FindByName from './pages/store/findByName.tsx';
+import StoreCart from './pages/store/cart.tsx';
 
 const router = createBrowserRouter([
   {
@@ -30,9 +33,21 @@ const router = createBrowserRouter([
     element: <IsUserSessionExpired >
       <StoreView />
     </IsUserSessionExpired>,
-  }, {
-    path: '/store/:productId',
-    element: <ProductDetailedCard />
+    children: [
+      {
+        path: "categories",
+        element: <FindByCategory />
+      }, {
+        path: '',
+        element: <FindByName />
+      }, {
+        path: 'cart',
+        element: <StoreCart />
+      }, {
+        path: ':productId',
+        element: <ProductDetailedCard />
+      }
+    ]
   }, {
     path: "/login",
     element: <SignInView />,
