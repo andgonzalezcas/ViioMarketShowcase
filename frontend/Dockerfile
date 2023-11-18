@@ -1,18 +1,25 @@
-FROM node:lts-bullseye as build
+FROM node:18-alpine as BUILD_IMAGE
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+WORKDIR /app/react-app
 
 COPY package*.json ./
-RUN npm ci
-COPY . .
-RUN npm run build
+RUN npm install
 
+COPY . .
+
+RUN npm run build
 
 ### Stage 2
 
-FROM nginx:alpine
-ADD ./config/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /usr/src/app/dist /var/www/app/
-EXPOSE 80
-CMD [ "nginx", "-g", "daemon off;" ]
+FROM node:18-alpine as PRODUCTION_IMAGE
+WORKDIR /app/react-app
+
+COPY --from=BUILD_IMAGE /app/react-app/dist /app/react-app/dist
+EXPOSE 8080
+
+COPY package*.json .
+COPY vite.config.ts .
+
+RUN npm install typescript
+EXPOSE 8080
+CMD [ "npm", "run", "preview" ]
