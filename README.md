@@ -67,3 +67,9 @@ Una vez que los contenedores están en funcionamiento, puedes acceder al backend
 
 En el proyecto nos podemos dirigir a los siguientes enlaces:
 - Postman documentatio: [https://documenter.getpostman.com/view/20593277/2s9YXpWzQ6](https://documenter.getpostman.com/view/20593277/2s9YXpWzQ6)
+
+### Prueba en frontend
+
+Se tiene un usuario de prueba inicial en la base de datos:
+- email: test@test.viio
+- pasword: test123
