@@ -2,7 +2,6 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import { swaggerSpec, swaggerUi } from './swagger'
 
 // rutas
 import productRoutes from './routes/products.routes';
@@ -15,9 +14,6 @@ import pkg from '../package.json';
 const app = express();
 app.use(cors());
 createUsers();
-
-// Configurar Swagger UI
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.set('pkg', pkg);
 app.use(express.json());

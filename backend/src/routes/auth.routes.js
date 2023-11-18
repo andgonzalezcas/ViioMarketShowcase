@@ -5,7 +5,7 @@ import { checkDuplicateEmail, checkDuplicateUsername } from '../middlewares';
 const router = Router();
 
 /**
- * @swagger
+ * 
  * /auth/signin:
  *   post:
  *     summary: Logearse en la aplicacion
@@ -23,7 +23,7 @@ const router = Router();
 router.post('/signin', signin);
 
 /**
- * @swagger
+ * 
  * /auth/signup:
  *   post:
  *     summary: Registrar nuevos usuarios

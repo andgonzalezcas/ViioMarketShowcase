@@ -5,7 +5,7 @@ import { verifyToken } from '../middlewares';
 import { getUserByToken, getUsers } from '../controllers/user.controller';
 
 /**
- * @swagger
+ * 
  * users/:
  *   get:
  *     summary: retorna la lista de usuarios registrados en la base de datos
@@ -23,7 +23,7 @@ import { getUserByToken, getUsers } from '../controllers/user.controller';
 router.get('/', verifyToken, getUsers);
 
 /**
- * @swagger
+ * 
  * /users/byToken:
  *   get:
  *     summary: Obtener el usuario correspondiente al jwt

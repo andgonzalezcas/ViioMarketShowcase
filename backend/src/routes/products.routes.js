@@ -5,7 +5,7 @@ import { verifyToken } from '../middlewares';
 import { getProducts, getProductById } from '../controllers/products.controller';
 
 /**
- * @swagger
+ * 
  * /products/:
  *   get:
  *     summary: Obtener la lista de todos los productos
@@ -23,7 +23,7 @@ import { getProducts, getProductById } from '../controllers/products.controller'
 router.get('/', verifyToken, getProducts);
 
 /**
- * @swagger
+ * 
  * /products/:productId:
  *   get:
  *     summary: Obtener un producto de la lista de todos los productos
