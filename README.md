@@ -67,4 +67,3 @@ Una vez que los contenedores están en funcionamiento, puedes acceder al backend
 
 En el proyecto nos podemos dirigir a los siguientes enlaces:
 - Postman documentatio: [https://documenter.getpostman.com/view/20593277/2s9YXpWzQ6](https://documenter.getpostman.com/view/20593277/2s9YXpWzQ6)
-- Swagger: [http://localhost:4040/api-docs](http://localhost:4040/api-docs)
