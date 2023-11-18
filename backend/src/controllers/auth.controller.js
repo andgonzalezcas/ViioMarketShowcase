@@ -23,10 +23,12 @@ export const signup = async (req, res) => {
       { expiresIn: EXPIRE_IN_MINUTES * MINUTE_ON_SECONDS } // 10 minutos
     )
 
+    const now = new Date();
+
     res.json({
       response: {
         token,
-        expiresIn: new Date(now.getTime() + EXPIRE_IN_MINUTES * MINUTE_ON_MILISECONDS) // 10 minutos
+        expiresIn: now.valueOf() + (EXPIRE_IN_MINUTES * MINUTE_ON_MILISECONDS) // 10 minutos
       },
       success: true
     });
@@ -59,7 +61,7 @@ export const signin = async (req, res) => {
     res.json({
       response: {
         token,
-        expiresIn: new Date(now.getTime() + EXPIRE_IN_MINUTES * MINUTE_ON_MILISECONDS) // 10 minutos
+        expiresIn: now.valueOf() + (EXPIRE_IN_MINUTES * MINUTE_ON_MILISECONDS) // 10 minutos
       },
       success: true,
 
