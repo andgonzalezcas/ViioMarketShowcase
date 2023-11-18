@@ -21,7 +21,7 @@ const ProductDetailedCard = () => {
   return (
     <div className="w-full h-[80vh] flex justify-center items-center">
       <div className="max-w-xl w-full border p-8 rounded-2xl flex flex-col gap-5">
-        <div className="h-80 overflow-hidden rounded-lg">
+        <div className="hidden xl:flex md:h-80 overflow-hidden rounded-lg">
           <img
             src={product.thumbnail}
             alt="product card image"
