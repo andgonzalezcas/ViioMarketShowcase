@@ -12,3 +12,16 @@ body {
   background-color: #131313;
   color: white;
 }
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #808080 transparent;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #808080;
+}

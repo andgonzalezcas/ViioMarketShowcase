@@ -29,7 +29,7 @@ const StoreView = () => {
   if (!productList) return <p>Error loading products</p>
 
   return (
-    <div className="w-screen flex justify-start md:justify-center overflow-hidden">
+    <div className="w-full flex justify-start md:justify-center overflow-hidden">
       <div className="w-full flex flex-col justify-center p-4 max-w-7xl">
         <StoreNavbar />
 
