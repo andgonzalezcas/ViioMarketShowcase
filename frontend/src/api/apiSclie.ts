@@ -5,7 +5,7 @@ export const apiSlice = createApi({
   reducerPath: 'products',
   baseQuery: fetchBaseQuery({ baseUrl: VIIO_MARKET_SHOWCASE_BACKEND_SERVICE.baseUrl }),
   endpoints: (builder) => ({
-    getProducts: builder.query({
+    getProducts: builder.mutation({
       query: (accessToken: string) => ({
         method: VIIO_MARKET_SHOWCASE_BACKEND_SERVICE.endpoints.get_products.method,
         url: VIIO_MARKET_SHOWCASE_BACKEND_SERVICE.endpoints.get_products.url,
@@ -29,4 +29,4 @@ export const apiSlice = createApi({
   }),
 })
 
-export const { useGetProductsQuery, useSignInMutation, useSignUpMutation } = apiSlice;
+export const { useGetProductsMutation, useSignInMutation, useSignUpMutation } = apiSlice;
