@@ -30,7 +30,8 @@ app.get('/', (req, res) => {
       name: app.get('pkg').name,
       description: app.get('pkg').description,
       version: app.get('pkg').version,
-    }
+    },
+    success: true
   });
 });
 

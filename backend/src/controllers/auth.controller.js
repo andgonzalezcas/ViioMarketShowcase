@@ -17,12 +17,12 @@ export const signup = async (req, res) => {
     const token = jwt.sign(
       { id: savedUser.id },
       config.SECRET,
-      { expiresIn: 86400 } // 24 horas
+      { expiresIn: 600 } // 10 minutos
     )
 
-    res.json({ response: token });
+    res.json({ response: token, success: true });
   } catch (error) {
-    res.status(500).json({ response: "Error creating user (" + error + ")" });
+    res.json({ response: "Error creating user (" + error + ")", success: false });
   }
 }
 
@@ -32,23 +32,21 @@ export const signin = async (req, res) => {
   try {
     const userFound = await User.findOne({ email });
 
-    if (!userFound) return res.status(400).json({ response: "User not found" });
+    if (!userFound) return res.json({ response: "User not found", success: false });
 
     const matchPassword = await User.comparePassword(password, userFound.password);
 
     if (!matchPassword)
-      return res.status(401).json({
-        response: "Invalid Password",
-      });
+      return res.json({ response: "Invalid Password", success: false });
 
     const token = jwt.sign(
       { id: userFound._id },
       config.SECRET,
-      { expiresIn: 86400 } // 24 horas
+      { expiresIn: 600 } // 10 minutos
     );
 
-    res.json({ response: token });
+    res.json({ response: token, success: true });
   } catch (error) {
-    res.status(500).json({ response: "Error signin user (" + error + ")" });
+    res.json({ response: "Error signin user (" + error + ")", success: false });
   }
 }
